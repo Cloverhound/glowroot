@@ -70,7 +70,7 @@ public class CxfClientPluginIT {
         Trace.Entry entry = i.next();
         assertThat(entry.getDepth()).isEqualTo(0);
         assertThat(entry.getMessage()).matches("http client request:"
-                + " POST http://localhost:\\d+/cxf/helloWorld");
+                + " POST http://localhost:\\d+/cxf/helloWorld 200");
 
         assertThat(i.hasNext()).isFalse();
     }

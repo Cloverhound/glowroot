@@ -23,7 +23,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
 public class AsyncQueryData implements QueryData {
 
-    private final String queryText;
+    private volatile String queryText;
     private final @Nullable AsyncQueryData limitExceededBucket;
 
     private final AtomicLong sumOfStartTicks = new AtomicLong();
@@ -43,6 +43,16 @@ public class AsyncQueryData implements QueryData {
     @Override
     public String getQueryText() {
         return queryText;
+    }
+
+    @Override
+    public void setQueryText(String queryText) {
+        this.queryText = queryText;
+    }
+
+    @Override
+    public void appendQueryText(String queryText) {
+        this.queryText += queryText;
     }
 
     public long getTotalDurationNanos(Ticker ticker) {

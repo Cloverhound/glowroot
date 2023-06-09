@@ -321,6 +321,7 @@ class TransactionJsonService {
                     .type(loopServiceCall.getType())
                     .text(loopServiceCall.getText())
                     .totalDurationNanos(loopServiceCall.getTotalDurationNanos())
+                    // .maxDurationNanos(loopServiceCall.getMaxDurationNanos())
                     .executionCount(loopServiceCall.getExecutionCount())
                     .build());
         }
@@ -967,6 +968,7 @@ class TransactionJsonService {
         String type();
         String text();
         double totalDurationNanos();
+        // double maxDurationNanos();
         long executionCount();
     }
 

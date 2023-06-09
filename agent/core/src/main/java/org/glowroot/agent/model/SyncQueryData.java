@@ -40,7 +40,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 public class SyncQueryData implements QueryData {
 
     private final String queryType;
-    private final String queryText;
+    private volatile String queryText;
     private final @Nullable SyncQueryData nextQueryData;
     private final @Nullable SyncQueryData limitExceededBucket;
 
@@ -64,6 +64,16 @@ public class SyncQueryData implements QueryData {
 
     public String getQueryType() {
         return queryType;
+    }
+
+    @Override
+    public void setQueryText(String queryText) {
+        this.queryText = queryText;
+    }
+
+    @Override
+    public void appendQueryText(String queryText) {
+        this.queryText += queryText;
     }
 
     @Override
